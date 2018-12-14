@@ -1,0 +1,174 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+
+// Class Bar Chart
+public class bar extends javax.swing.JFrame {
+
+    public bar() {
+        initComponents();
+        setTitle("Bar Chart"); 			// Set Title GUI
+    }
+
+    private void initComponents() {
+    	
+    	// Set Variable
+        panel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        t1 = new javax.swing.JLabel();
+        t2 = new javax.swing.JLabel();
+        t3 = new javax.swing.JLabel();
+        txt_1 = new javax.swing.JTextField();
+        txt_2 = new javax.swing.JTextField();
+        txt_3 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+
+        // Main GUI Setting
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        panel.setBackground(new java.awt.Color(153, 204, 255));					// Set size and position
+        panel.setLayout(new java.awt.BorderLayout());							
+        
+        // Button BarChart
+        jButton1.setText("BarChart");							
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        
+        // Set Text
+        t1.setText("Temp(C)");
+        t2.setText("Temp(F)");
+        t3.setText("Humidity");
+        
+        // Set Action Event for Button
+        txt_1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_1ActionPerformed(evt);
+            }
+        });
+        
+        // Part of Bar Chart GUI 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel1.setText("Compare Between Temperature and Humidity");
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(t1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(t2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(t3)
+                        .addGap(36, 36, 36))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(txt_2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96)
+                        .addComponent(txt_3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)))
+                .addComponent(jButton1)
+                .addGap(25, 25, 25))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(85, 85, 85))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(t1)
+                            .addComponent(t2)
+                            .addComponent(t3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txt_3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 11, Short.MAX_VALUE))
+        );
+
+        pack();
+    }
+
+    // Create Bar Chart
+    private void txt_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_1ActionPerformed
+    }
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Set Variable
+    	int t1 = Integer.parseInt(txt_1.getText());
+        int t2 = Integer.parseInt(txt_2.getText());
+        int t3 = Integer.parseInt(txt_3.getText());
+        //Set Data
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(t1, "","Temp(C)");					//  SetData Temp
+        dataset.setValue(t2, "","Temp(F)");					//  SetData Temp
+        dataset.setValue(t3, "","Humidity");				//  SetData Humidity
+        // Chart
+        JFreeChart chart = ChartFactory.createBarChart("","","",dataset,PlotOrientation.HORIZONTAL,false ,false, false);  // add Dataset on to Chart
+        CategoryPlot catPlot = chart.getCategoryPlot();		// Create Chart
+        catPlot.setRangeGridlinePaint(Color.BLACK);			// Set Color
+        ChartPanel chartPanel = new ChartPanel(chart);		// Create Chart
+        panel.removeAll();									
+        panel.add(chartPanel , BorderLayout.CENTER);
+        panel.validate();
+    }
+
+    public static void main(String args[]) {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(bar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(bar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(bar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(bar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new bar().setVisible(true);
+            }
+        });
+    }
+    // Set Private 
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel panel;
+    private javax.swing.JLabel t1;
+    private javax.swing.JLabel t2;
+    private javax.swing.JLabel t3;
+    private javax.swing.JTextField txt_1;
+    private javax.swing.JTextField txt_2;
+    private javax.swing.JTextField txt_3;
+}
